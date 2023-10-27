@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<h1>Admin access</h1>
+<h3 th:if="${typeName}" th:text="${'Deleted: ' + typeName + ' > ' + name}"></h3>
+<ul>
+    <li th:each="category : ${categories}">
+        <a th:text="${category.name}" th:href="@{'/admin?category=' + ${category.id}}"></a>
+        <a th:href="@{'/admin/delete-category?id=' + ${category.id}}"><i class="fa fa-trash" style="width: 15px"></i></a>
+        <a th:href="@{'/admin/edit-category?id=' + ${category.id}}"><i class="fa fa-pencil" style="width: 15px"></i></a>
+    </li>
+    <li th:each="product : ${products}">
+        <span th:text="${product.name}"></span>
+        <a th:href="@{'/admin/delete-product?id=' + ${product.id}}"><i class="fa fa-trash" style="width: 15px"></i></a>
+        <a th:href="@{'/admin/edit-product?id=' + ${product.id}}"><i class="fa fa-pencil" style="width: 15px"></i></a>
+        <br>
+        <span th:text="${product.description}"></span>
+        <br>
+    </li>
+</ul>
+<a th:href="@{/admin/add-category}">Add new category</a> <br>
+<a th:href="@{/admin/add-product}">Add new product</a> <br>
+<a th:href="@{/admin}">To admin start</a> <br>
+<a th:href="@{/}">Back to home page</a>
+</body>
+</html>

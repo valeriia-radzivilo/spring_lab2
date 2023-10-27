@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit product</title>
+</head>
+<body>
+<h1>Edit product</h1>
+<td th:switch="${updated}">
+    <h3 th:case="true">Updated successfully!</h3>
+    <form th:case="false" th:object="${product}" th:action="@{/admin/edit-product}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <input th:type="text" th:field="*{name}" placeholder="Name" required="required"/><br><br>
+        <textarea th:type="text" th:field="*{description}" placeholder="Description" rows="5"></textarea><br><br>
+        <select th:field="*{categoryId}">
+            <option th:value="${currentCategory.id}" th:text="${currentCategory.name}"></option>
+            <option th:each="category : ${categories}" th:value="${category.id}"
+                    th:text="${category.name}"></option>
+        </select><br><br>
+        <button>Save</button>
+    </form>
+</td>
+<br>
+<a th:href="@{/admin}">To admin start</a> <br>
+<a th:href="@{/}">Back to home page</a>
+</body>
+</html>

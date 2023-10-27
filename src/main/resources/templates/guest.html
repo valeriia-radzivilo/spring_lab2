@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Guest page</title>
+</head>
+<body>
+<h1>Guest access</h1>
+<ul>
+    <li th:each="category : ${categories}">
+        <a th:text="${category.name}" th:href="@{'/guest?category=' + ${category.id}}"></a>
+    </li>
+    <li th:each="product : ${products}">
+        <span th:text="${product.name}"></span>
+    </li>
+</ul>
+
+<a th:href="@{/guest}">To start</a><br/>
+<a th:href="@{/}">Back to home page</a>
+
+</body>
+</html>

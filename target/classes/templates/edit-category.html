@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit product</title>
+</head>
+<body>
+<h1>Edit product</h1>
+<td th:switch="${updated}">
+    <h3 th:case="true">Updated successfully!</h3>
+    <form th:case="false" th:object="${category}" th:action="@{/admin/edit-category}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <input th:type="text" th:field="*{name}" placeholder="Name" required="required"/>
+        <br>
+        <br>
+        <button>Save</button>
+    </form>
+    <span th:case="'1'" th:text="${teacher.courses[0]}"></span>
+</td>
+
+<br>
+<a th:href="@{/admin}">To admin start</a> <br>
+<a th:href="@{/}">Back to home page</a>
+</body>
+</html>
